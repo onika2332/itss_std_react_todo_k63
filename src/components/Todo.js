@@ -32,9 +32,11 @@ function Todo() {
       <div className="panel-heading">
         ITSS ToDoアプリ
       </div>
-      {items.map(item => (
-        <TodoItem item={item} key={item.key} />
-      ))}
+      {items.map(
+        item => (
+          <TodoItem item={item} key={item.key} />
+        )
+      )}
       <div className="panel-block">
         {items.length} items
       </div>
