@@ -27,6 +27,21 @@ function Todo() {
     /* テストコード 終了 */
   ]);
 
+  const changeTextColor = (e, id) => {
+    const newItems = items.map(
+      (item) => {
+        if (item.key === id) {
+          return {
+            ...item,
+            done: e.target.checked
+          }
+        }
+        return item;
+      }
+    );
+    putItems(newItems);
+  }
+
   return (
     <div className="panel">
       <div className="panel-heading">
@@ -34,7 +49,7 @@ function Todo() {
       </div>
       {items.map(
         item => (
-          <TodoItem item={item} key={item.key} />
+          <TodoItem item={item} key={item.key} clickFn={changeTextColor} />
         )
       )}
       <div className="panel-block">
