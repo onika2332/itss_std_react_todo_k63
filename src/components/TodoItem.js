@@ -15,6 +15,7 @@ function TodoItem({ item, clickFn }) {
       <input
         type="checkbox"
         onClick={(e) => clickFn(e, item.key)}
+        checked={item.done === true ? "on" : ""}
       />
       {item.text}
     </label>

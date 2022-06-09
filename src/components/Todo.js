@@ -27,6 +27,18 @@ function Todo() {
     /* テストコード 終了 */
   ]);
 
+  const [filter, setFilter] = useState('ALL');
+
+  const filteredItems = items.filter(item => {
+    if (filter === 'ALL') return true;
+
+    if (filter === 'DONE') return item.done;
+
+    if (filter === 'TODO') return !item.done;
+  });
+
+  const handleChange = (value) => setFilter(value);
+
   const changeTextColor = (e, id) => {
     const newItems = items.map(
       (item) => {
@@ -60,13 +72,14 @@ function Todo() {
         ITSS ToDoアプリ
       </div>
       <Input addItems={addItems} />
-      {items.map(
+      <Filter changeFilter={handleChange} filterValue={filter} />
+      {filteredItems.map(
         item => (
           <TodoItem item={item} key={item.key} clickFn={changeTextColor} />
         )
       )}
       <div className="panel-block">
-        {items.length} items
+        {filteredItems.length} items
       </div>
     </div>
   );
